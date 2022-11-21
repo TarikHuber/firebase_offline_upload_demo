@@ -60,9 +60,6 @@ class FilesSync {
         if (localPath != '') {
           String? downloadURL = await uploadFile(storagePath, localPath);
 
-          print('downloadURL: $downloadURL');
-          print('firestorePath: $firestorePath');
-
           if (downloadURL != '') {
             _firestore.doc(firestorePath).update({
               "downloadURL": downloadURL,
