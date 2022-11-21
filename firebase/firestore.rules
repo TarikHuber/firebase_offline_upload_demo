@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+
+  /// FUNCTIONS START ///
+
+  //Checks if user is signed in
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  //Checks if user has admin rights
+  function isAdmin() {
+    return exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+  }
+
+  function isGroupAdmin(uid) {
+    return exists(/databases/$(database)/documents/groups/$(uid)/admins/$(request.auth.uid))
+  }
+
+  function isGroupMember(uid) {
+    return exists(/databases/$(database)/documents/groups/$(uid)/members/$(request.auth.uid))
+  }
+
+  //Checks if user has a specific grant
+  function hasGrant(grant) {
+    return  get(/databases/$(database)/documents/user_grants/$(request.auth.uid)).data[grant]==true
+  }
+
+  //Checks if user is granted either as admin or with a grant
+  function isGranted(grant){
+    return isAdmin() || hasGrant(grant);
+  }
+
+  //Checks if user has specific UID
+  function isOwner(userUid){
+    return request.auth.uid == userUid 
+  }
+
+  function notUpdating(field) {
+    return !(field in request.resource.data)
+      || resource.data[field] == request.resource.data[field]
+  }
+
+  function istUpdating(field) {
+    return field in request.resource.data
+  }
+
+
+  /// FUNCTIONS END ///
+
+  match /databases/{database}/documents {
+    match /users/{userUid} {
+      allow read: if isOwner(userUid)
+      allow write: if isOwner(userUid);
+      match /images/{document=**} {
+        allow read: if isOwner(userUid);
+        allow write: if isOwner(userUid);
+      }
+      match /uploads/{document=**} {
+        allow read: if isOwner(userUid);
+        allow write: if isOwner(userUid);
+      }
+      match /{document=**} {
+        allow read: if isOwner(userUid);
+      }
+    }
+  }
+}

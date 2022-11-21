@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1097628050085",
+    "project_id": "offlineuploaddemo",
+    "storage_bucket": "offlineuploaddemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097628050085:android:0d4a57f4dc44bfe6fee34c",
+        "android_client_info": {
+          "package_name": "com.example.firebase_offline_upload_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097628050085-2vb9ufi4gvq544nl3m2nta8opqtmh3ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRMWvSGjCU59l0n9lQHeqM-lWQqiMtkF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097628050085-2vb9ufi4gvq544nl3m2nta8opqtmh3ij.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1097628050085-pd290hv6mtu6rg0u27k362pqu030f715.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseOfflineUploadDemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
